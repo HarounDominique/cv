@@ -11,6 +11,12 @@ import { CommonModule } from '@angular/common';
 export class App {
   active: Section | null = null;
 
+  activeExperience: string | null = null;
+
+  toggleExperience(id: string) {
+    this.activeExperience = this.activeExperience === id ? null : id;
+  }
+
   open(section: Section) {
     this.active = this.active === section ? null : section;
   }
@@ -25,7 +31,7 @@ export class App {
     const titles: Record<Section, string> = {
       experiencia: 'Experiencia',
       sobreMi: 'Sobre mí',
-      academico: 'Datos académicos',
+      perfil: 'Perfil',
       proyectos: 'Proyectos',
       contacto: 'Contáctame'
     };
@@ -34,4 +40,9 @@ export class App {
   }
 }
 
-type Section = 'experiencia' | 'sobreMi' | 'academico' | 'proyectos' | 'contacto';
+type Section =
+  | 'experiencia'
+  | 'sobreMi'
+  | 'perfil'
+  | 'proyectos'
+  | 'contacto';

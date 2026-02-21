@@ -13,17 +13,16 @@ body {
 /* GRID Bento               */
 /* ------------------------ */
 .bento-container {
-  min-height: 100vh;
+  min-height: 100vh; /* permite crecer si las cards necesitan más espacio */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
   grid-template-areas:
     "experiencia experiencia sobreMi"
-    "academico proyectos contacto";
+    "perfil proyectos contacto";
   gap: 20px;
-
-  padding: 40px;
-  max-width: 1400px;   /* limita ancho en pantallas muy grandes */
+  padding: 2rem; /* menos padding que antes */
+  max-width: 1400px;
   margin: 0 auto;
   box-sizing: border-box;
 }
@@ -47,12 +46,13 @@ body {
   font-weight: 500;
   position: relative;
   overflow: hidden;
-  padding: 2rem 15vw; /* vertical 2rem, lateral 15vw */
+  padding: 1.5rem 2rem; /* menos padding lateral que antes */
 }
 
 .card:hover {
   background: #334155;
-  transform: translateY(-5px);
+  transform: none; /* eliminamos el levantamiento por hover */
+  box-shadow: none;
 }
 
 /* ------------------------ */
@@ -60,9 +60,9 @@ body {
 /* ------------------------ */
 .card--experiencia { grid-area: experiencia; }
 .card--sobreMi { grid-area: sobreMi; }
-.card--academico { grid-area: academico; }
 .card--proyectos { grid-area: proyectos; }
 .card--contacto { grid-area: contacto; }
+.card--perfil { grid-area: perfil; }
 
 /* ------------------------ */
 /* Contenido interno cards  */
@@ -119,7 +119,6 @@ body {
   margin: 0 0 1rem 0;
 }
 
-/* Título de Sobre mí */
 .card--sobreMi h2 {
   text-align: left;
   font-size: 1.5rem;
@@ -130,22 +129,21 @@ body {
 /* Responsive               */
 @media (max-width: 900px) {
 
-  /* Grid se apila vertical */
   .bento-container {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(5, auto);
     grid-template-areas:
       "experiencia"
       "sobreMi"
-      "academico"
+      "perfil"
       "proyectos"
       "contacto";
-    padding: 20px;
+    padding: 1rem;
+    gap: 16px;
   }
 
-  /* Tarjetas en móvil */
   .card {
-    padding: 1.5rem 5vw; /* menos padding lateral en móvil */
+    padding: 1rem 5vw;
     font-size: 16px;
     border-radius: 16px;
     box-shadow: 0 10px 40px rgba(2,6,23,0.5);
@@ -167,7 +165,7 @@ body {
   }
 
   body {
-    overflow: auto; /* permite scroll normal en móvil */
+    overflow: auto;
   }
 }
 
@@ -177,5 +175,101 @@ body {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto auto auto;
     gap: 16px;
+  }
+}
+
+/* ------------------------ */
+/* Mini bento experience    */
+.mini-card {
+  background: #243447;
+  border-radius: 16px;
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.25s ease,
+  border-color 0.25s ease;
+  border: 1px solid #334155;
+}
+
+.mini-card:hover {
+  background: #243447; /* sin hover excesivo */
+}
+
+.mini-expanded {
+  border: 1px solid #38bdf8;
+  background: #243447;
+}
+
+.mini-header h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: white;
+}
+
+.mini-header span {
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.mini-content {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.mini-content ul {
+  padding-left: 1.2rem;
+  margin: 0;
+}
+
+.mini-content li {
+  margin-bottom: 0.5rem;
+  color: #e2e8f0;
+}
+
+/* ------------------------ */
+/* Card Perfil Bento        */
+.profile-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.profile-image {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 20px; /* bordes bento */
+  border: 2px solid #334155;
+  margin-bottom: 1rem;
+  max-height: 40vh; /* evita que sea demasiado alta */
+}
+
+.profile-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+}
+
+/* Card Perfil en desktop */
+.card--perfil .profile-preview {
+  padding: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ajustes móviles perfil */
+@media (max-width: 900px) {
+  .profile-image {
+    width: 120px;
+    height: 120px;
+    max-height: 30vh;
+  }
+
+  .profile-name {
+    font-size: 1.3rem;
   }
 }

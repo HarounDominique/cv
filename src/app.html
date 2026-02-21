@@ -7,12 +7,56 @@
     (click)="open('experiencia')"
   >
     <h2>Experiencia</h2>
+
     <div class="card-content" *ngIf="active === 'experiencia'">
-      <p><strong>M3 INFORMÁTICA S.L.</strong> (2024 - Actualidad)</p>
-      <p>Desarrollador Full Stack (Angular + Java + SQL)</p>
-      <br>
-      <p><strong>IMATIA INNOVATION S.L.</strong> (2023)</p>
-      <p>Spring, PostgreSQL, SCRUM</p>
+
+      <!-- M3 -->
+      <div
+        class="mini-card"
+        [class.mini-expanded]="activeExperience === 'm3'"
+        (click)="toggleExperience('m3'); $event.stopPropagation()"
+      >
+        <div class="mini-header">
+          <h3>Desarrollador Full Stack</h3>
+          <span>M3 INFORMÁTICA S.L. | 2024 - Actualidad</span>
+        </div>
+
+        <div class="mini-content" *ngIf="activeExperience === 'm3'">
+          <ul>
+            <li>Migración del gestor de dependencias de <strong>npm a Bun</strong>, mejorando la seguridad y mitigando riesgos asociados a malware.</li>
+            <li>Mitigación de vulnerabilidades mediante actualización de dependencias críticas alineadas con el <strong>Esquema Nacional de Seguridad</strong>, utilizando <strong>Trivy</strong>.</li>
+            <li>Actualización de librerías y dependencias de todo el proyecto a versiones actualizadas, incluyendo entorno <strong>Angular</strong>.</li>
+            <li>Desarrollo y mantenimiento de frontend (Angular) y backend (Java).</li>
+            <li>Mantenimiento y optimización de bases de datos SQL.</li>
+            <li>Depuración y resolución de incidencias en entornos productivos.</li>
+            <li>Diseño, arquitectura y desarrollo de nuevos módulos y ampliaciones.</li>
+            <li>Elaboración de documentación técnica y funcional.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- IMATIA -->
+      <div
+        class="mini-card"
+        [class.mini-expanded]="activeExperience === 'imatia'"
+        (click)="toggleExperience('imatia'); $event.stopPropagation()"
+      >
+        <div class="mini-header">
+          <h3>Desarrollador Full Stack (Prácticas)</h3>
+          <span>IMATIA INNOVATION S.L. | 2023</span>
+        </div>
+
+        <div class="mini-content" *ngIf="activeExperience === 'imatia'">
+          <ul>
+            <li>Diseño de modelo de datos en PostgreSQL.</li>
+            <li>Desarrollo de frontend en Angular.</li>
+            <li>Desarrollo de backend basado en microservicios con Spring.</li>
+            <li>Depuración de código, testing y validación funcional.</li>
+            <li>Trabajo bajo metodología ágil SCRUM.</li>
+          </ul>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -35,19 +79,29 @@
         oportunidad, exploro áreas que van más allá de mi especialidad para seguir
         creciendo tanto técnica como personalmente.
       </p>
+      <h2>Datos académicos</h2>
+      <ul>
+        <li>Desarrollo Aplicaciones Multiplataforma – IES de Teis (2021-2023)</li>
+        <li>Ciencias Políticas y de la Administración Pública – USC (2017-2021)</li>
+      </ul>
     </div>
   </div>
 
   <div
-    class="card card--academico"
-    [class.expanded]="active === 'academico'"
-    [class.dimmed]="active !== null && active !== 'academico'"
-    (click)="open('academico')"
+    class="card card--perfil"
+    [class.expanded]="active === 'perfil'"
+    [class.dimmed]="active !== null && active !== 'perfil'"
+    (click)="open('perfil')"
   >
-    <h2>Datos académicos</h2>
-    <div class="card-content" *ngIf="active === 'academico'">
-      <p>DAM – IES de Teis (2021-2023)</p>
-      <p>Ciencias Políticas – USC (2017-2021)</p>
+    <div class="profile-preview">
+      <img src="assets/img/perfil.png" alt="Foto de perfil" class="profile-image">
+      <h2 class="profile-name">Tu Nombre Aquí</h2>
+    </div>
+
+    <div class="card-content" *ngIf="active === 'perfil'">
+      <p>Desarrollador Full Stack</p>
+      <p>Angular · Java · SQL</p>
+      <p>Vigo, Galicia</p>
     </div>
   </div>
 
