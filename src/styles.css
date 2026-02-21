@@ -1,3 +1,6 @@
+/* ------------------------ */
+/* Global y body            */
+/* ------------------------ */
 body {
   margin: 0;
   background: #0f172a;
@@ -6,9 +9,11 @@ body {
   overflow: hidden;
 }
 
-/* GRID */
+/* ------------------------ */
+/* GRID Bento               */
+/* ------------------------ */
 .bento-container {
-  height: 100vh;
+  min-height: 100vh;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
@@ -18,34 +23,31 @@ body {
   gap: 20px;
 
   padding: 40px;
-
-  /* NUEVO: centrar contenido y limitar ancho máximo */
-  max-width: 1400px;   /* evita que se estire demasiado en pantallas muy grandes */
-  margin: 0 auto;      /* centra el grid horizontalmente */
+  max-width: 1400px;   /* limita ancho en pantallas muy grandes */
+  margin: 0 auto;
   box-sizing: border-box;
 }
 
-@media (min-width: 1200px) {
-  .card {
-    background: #1e293b;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start; /* importante para expandir hacia abajo */
-    cursor: pointer;
-    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.4s ease,
-    background-color 0.4s ease;
-    font-size: 18px;
-    font-weight: 500;
-    position: relative;
-    overflow: hidden;
-
-    /* Mantenemos el margen lateral grande */
-    padding: 2rem 15vw; /* 2rem arriba/abajo, 15vw izquierda/derecha */
-  }
+/* ------------------------ */
+/* Tarjetas genéricas       */
+/* ------------------------ */
+.card {
+  background: #1e293b;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+  transition: transform 0.6s cubic-bezier(0.22,1,0.36,1),
+  box-shadow 0.6s cubic-bezier(0.22,1,0.36,1),
+  opacity 0.4s ease,
+  background-color 0.4s ease;
+  font-size: 18px;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+  padding: 2rem 15vw; /* vertical 2rem, lateral 15vw */
 }
 
 .card:hover {
@@ -53,12 +55,18 @@ body {
   transform: translateY(-5px);
 }
 
+/* ------------------------ */
+/* Tarjetas por área        */
+/* ------------------------ */
 .card--experiencia { grid-area: experiencia; }
 .card--sobreMi { grid-area: sobreMi; }
 .card--academico { grid-area: academico; }
 .card--proyectos { grid-area: proyectos; }
 .card--contacto { grid-area: contacto; }
 
+/* ------------------------ */
+/* Contenido interno cards  */
+/* ------------------------ */
 .card-content {
   width: 100%;
   margin-top: 16px;
@@ -68,24 +76,27 @@ body {
   overflow-y: auto;
   opacity: 0;
   transform: translateY(8px);
-  transition:
-    opacity 0.4s ease 0.12s,
-    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.12s;
+  transition: opacity 0.4s ease 0.12s,
+  transform 0.5s cubic-bezier(0.22,1,0.36,1) 0.12s;
 }
 
+/* ------------------------ */
+/* Card dimmed              */
 .bento-container.has-active .card.dimmed {
   opacity: 0;
   pointer-events: none;
   transform: scale(0.96);
 }
 
+/* ------------------------ */
+/* Tarjeta expandida        */
 .card.expanded {
   grid-column: 1 / -1;
   grid-row: 1 / -1;
   z-index: 2;
   align-items: flex-start;
   justify-content: flex-start;
-  box-shadow: 0 30px 80px rgba(2, 6, 23, 0.6);
+  box-shadow: 0 30px 80px rgba(2,6,23,0.6);
 }
 
 .card.expanded .card-content {
@@ -93,51 +104,78 @@ body {
   transform: translateY(0);
 }
 
-/* Responsive */
+/* ------------------------ */
+/* Tarjeta Sobre mí específica */
+.card--sobreMi .card-content {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #e2e8f0;
+  overflow-y: auto;
+  max-height: 75vh; /* altura máxima para scroll interno */
+  padding: 0;
+}
+
+.card--sobreMi .card-content p {
+  margin: 0 0 1rem 0;
+}
+
+/* Título de Sobre mí */
+.card--sobreMi h2 {
+  text-align: left;
+  font-size: 1.5rem;
+  margin-bottom: 0.8rem;
+}
+
+/* ------------------------ */
+/* Responsive               */
 @media (max-width: 900px) {
+
+  /* Grid se apila vertical */
   .bento-container {
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-rows: repeat(5, auto);
     grid-template-areas:
       "experiencia"
       "sobreMi"
       "academico"
       "proyectos"
       "contacto";
+    padding: 20px;
   }
 
-  .card.expanded {
-    grid-column: 1 / -1;
-    grid-row: 1 / -1;
+  /* Tarjetas en móvil */
+  .card {
+    padding: 1.5rem 5vw; /* menos padding lateral en móvil */
+    font-size: 16px;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(2,6,23,0.5);
+    margin-bottom: 20px;
+  }
+
+  .card h2 {
+    text-align: left;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-content {
+    max-height: none;
+    overflow: visible;
+  }
+
+  .card-content p {
+    margin-bottom: 0.8rem;
   }
 
   body {
-    overflow: auto;
+    overflow: auto; /* permite scroll normal en móvil */
   }
-
 }
 
-/* ------------------------ */
-/* Tarjeta Sobre mí         */
-/* ------------------------ */
-.card--sobreMi {
-  padding: 2rem 15vw;          /* 2rem arriba/abajo, 15vw izquierda/derecha */
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  overflow: hidden;            /* evita scroll no deseado */
-}
-
-.card--sobreMi .card-content {
-  font-size: 18px;             /* letra más grande */
-  line-height: 1.8;            /* interlineado cómodo */
-  color: #e2e8f0;
-  overflow-y: auto;            /* scroll solo si contenido excede altura */
-  max-height: 75vh;            /* limita altura para no romper layout */
-  padding: 0;                  /* padding ya controlado en .card */
-}
-
-.card--sobreMi .card-content p {
-  margin: 0 0 1rem 0;          /* separación entre párrafos */
+/* Grid adaptativo tablet pequeño */
+@media (min-width: 600px) and (max-width: 900px) {
+  .bento-container {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto auto auto;
+    gap: 16px;
+  }
 }
