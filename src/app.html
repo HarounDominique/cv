@@ -1,0 +1,72 @@
+<div class="bento-container" [class.has-active]="active !== null">
+
+  <div
+    class="card card--experiencia"
+    [class.expanded]="active === 'experiencia'"
+    [class.dimmed]="active !== null && active !== 'experiencia'"
+    (click)="open('experiencia')"
+  >
+    <h2>Experiencia</h2>
+    <div class="card-content" *ngIf="active === 'experiencia'">
+      <p><strong>M3 INFORMÁTICA S.L.</strong> (2024 - Actualidad)</p>
+      <p>Desarrollador Full Stack (Angular + Java + SQL)</p>
+      <br>
+      <p><strong>IMATIA INNOVATION S.L.</strong> (2023)</p>
+      <p>Spring, PostgreSQL, SCRUM</p>
+    </div>
+  </div>
+
+  <div
+    class="card card--sobreMi"
+    [class.expanded]="active === 'sobreMi'"
+    [class.dimmed]="active !== null && active !== 'sobreMi'"
+    (click)="open('sobreMi')"
+  >
+    <h2>Sobre mí</h2>
+    <div class="card-content" *ngIf="active === 'sobreMi'">
+      <p>
+        Desarrollador con enfoque colaborativo, comunicación clara y
+        aprendizaje constante en tecnologías emergentes.
+      </p>
+    </div>
+  </div>
+
+  <div
+    class="card card--academico"
+    [class.expanded]="active === 'academico'"
+    [class.dimmed]="active !== null && active !== 'academico'"
+    (click)="open('academico')"
+  >
+    <h2>Datos académicos</h2>
+    <div class="card-content" *ngIf="active === 'academico'">
+      <p>DAM – IES de Teis (2021-2023)</p>
+      <p>Ciencias Políticas – USC (2017-2021)</p>
+    </div>
+  </div>
+
+  <div
+    class="card card--proyectos"
+    [class.expanded]="active === 'proyectos'"
+    [class.dimmed]="active !== null && active !== 'proyectos'"
+    (click)="open('proyectos')"
+  >
+    <h2>Proyectos</h2>
+    <div class="card-content" *ngIf="active === 'proyectos'">
+      <p>Proyectos personales en móvil, web y sistemas embebidos.</p>
+    </div>
+  </div>
+
+  <div
+    class="card card--contacto"
+    [class.expanded]="active === 'contacto'"
+    [class.dimmed]="active !== null && active !== 'contacto'"
+    (click)="open('contacto')"
+  >
+    <h2>Contáctame</h2>
+    <div class="card-content" *ngIf="active === 'contacto'">
+      <p>📧 haroundominique&#64;gmail.com</p>
+      <p>📍 Vigo, Galicia</p>
+    </div>
+  </div>
+
+</div>
