@@ -286,3 +286,54 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
+
+/* PERFIL centrado solo cuando está expandido */
+.card--perfil.expanded {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Centrar imagen + nombre */
+.card--perfil.expanded .profile-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Centrar contenido inferior */
+.card--perfil.expanded .card-content {
+  text-align: center;
+  align-items: center;
+}
+
+/* Imagen base (manteniendo bordes del bento) */
+.profile-image {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 20px; /* mismo estilo que la card */
+  cursor: pointer;
+
+  transition:
+    transform 0.4s cubic-bezier(0.22,1,0.36,1),
+    top 0.4s ease,
+    left 0.4s ease,
+    box-shadow 0.4s ease;
+
+  /* posición relativa para poder animar */
+  position: relative;
+}
+
+/* Zoom cuando la card está expandida */
+.card--perfil.expanded .profile-image.image-zoomed {
+  position: absolute; /* flota dentro de la card */
+  top: 50%;           /* centro vertical */
+  left: 50%;          /* centro horizontal */
+  transform: translate(-50%, -50%) scale(2); /* centrado perfecto y escalado */
+  z-index: 10;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+  width: auto;        /* mantiene proporción original al escalar */
+  height: 50%;        /* ocupa ~50% del alto de la card expandida */
+}

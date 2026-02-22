@@ -94,7 +94,13 @@
     (click)="open('perfil')"
   >
     <div class="profile-preview">
-      <img src="assets/img/perfil.png" alt="Foto de perfil" class="profile-image">
+      <img
+        src="assets/img/perfil.png"
+        alt="Foto de perfil"
+        class="profile-image"
+        [class.image-zoomed]="zoomed"
+        (click)="toggleZoom($event)"
+      >
       <h2 class="profile-name">Dominique Haroun</h2>
     </div>
 
